@@ -16,7 +16,7 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`} style={{ fontSize: '2.5rem' }}>
-            Hi, I'm <span className='text-[#5e6bff]'>Ahmad Basyouni</span>
+          <span className='text-[#5e6bff]'>Ahmad Basyouni</span>
           </h1>
           <p className={`${styles.heroSubText} mt-1 text-white-100`} style={{ fontSize: '1.5rem' }}>
           <span className='text-[#5e6bff]'>Software & AI/ML Engineer</span> majoring in Computer Engineering and CS at City University of New York CSI, aiming to create innovative solutions in the 
