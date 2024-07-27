@@ -4,7 +4,6 @@ import { FaCat, FaGithub, FaLinkedin } from "react-icons/fa6";
 import { styles } from "../styles";
 import { menu, close } from "../assets";
 
-// Define navLinks directly in the component or import from constants
 const navLinks = [
   {
     id: "about",
@@ -54,7 +53,7 @@ const Navbar = () => {
     <header className={`${styles.paddingX} w-full fixed top-0 left-0 z-50 mt-4`}>
       <nav className={`container mx-auto flex justify-between py-5 items-center ${scrolled ? "backdrop-blur-md bg-[#1D2D49]/40" : "bg-transparent"} rounded-[3rem] px-8 mb-8 transition-all duration-200`}>
         <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.slice(0, 2).map((nav) => (
+          {navLinks.map((nav) => (
             <li
               key={nav.id}
               className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
@@ -78,17 +77,7 @@ const Navbar = () => {
           <FaCat className={`text-5xl transition-all ease-in-out duration-200 cursor-pointer ${active === "home" ? "text-[#5e6bff]" : "text-white"} hover:text-[#5e6bff]`} />
         </Link>
 
-        <div className="flex items-center gap-6">
-          <ul className="list-none hidden sm:flex flex-row gap-10">
-            <li
-              className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
-                active === "Contact" ? "text-[#5e6bff]" : "text-white/80"
-              }`}
-              onClick={() => handleLinkClick("contact", "Contact")}
-            >
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
+        <div className="hidden sm:flex items-center gap-6">
           <a href="https://github.com/ahmadbasyouni10" target="_blank" rel="noopener noreferrer">
             <FaGithub className="text-3xl text-white/80 hover:text-[#5e6bff] transition-all duration-200" />
           </a>
