@@ -36,16 +36,14 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`${styles.paddingX} w-full fixed top-0 left-0 z-50`}>
-      <nav className={`container mx-auto flex justify-between py-5 items-center ${scrolled ? "backdrop-blur-md bg-primary/40" : ""} rounded-[3rem]`}>
+    <header className={`${styles.paddingX} w-full fixed top-0 left-0 z-50 mt-4`}>
+      <nav className={`container mx-auto flex justify-between py-5 items-center ${scrolled ? "backdrop-blur-md bg-[#1D2D49]/40" : "bg-transparent"} rounded-[3rem] px-8 mb-8 transition-all duration-200`}>
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.slice(0, Math.ceil(navLinks.length / 2)).map((nav) => (
             <li
               key={nav.id}
               className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
-                active === nav.title
-                  ? "text-transparent bg-clip-text bg-gradient-to-b from-[#FA8578] to-[#DB5366]"
-                  : "text-white/80"
+                active === nav.title ? "text-[#5e6bff]" : "text-white/80"
               }`}
               onClick={() => handleLinkClick(nav.id, nav.title)}
             >
@@ -58,11 +56,11 @@ const Navbar = () => {
           to="/"
           className="flex items-center justify-center"
           onClick={() => {
-            setActive("");
+            setActive("home");
             window.scrollTo(0, 0);
           }}
         >
-          <FaCat className="text-5xl text-white hover:scale-125 transition-all ease-in-out duration-200" />
+          <FaCat className={`text-5xl transition-all ease-in-out duration-200 cursor-pointer ${active === "home" ? "text-[#5e6bff]" : "text-white"} hover:text-[#5e6bff]`} />
         </Link>
 
         <ul className="list-none hidden sm:flex flex-row gap-10">
@@ -70,9 +68,7 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
-                active === nav.title
-                  ? "text-transparent bg-clip-text bg-gradient-to-b from-[#FA8578] to-[#DB5366]"
-                  : "text-white/80"
+                active === nav.title ? "text-[#5e6bff]" : "text-white/80"
               }`}
               onClick={() => handleLinkClick(nav.id, nav.title)}
             >
@@ -92,7 +88,7 @@ const Navbar = () => {
       </nav>
 
       {toggle && (
-        <div className="sm:hidden fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-primary/80 backdrop-blur-md z-50">
+        <div className="sm:hidden fixed top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-[#1D2D49]/80 backdrop-blur-md z-50">
           <div className="absolute top-0 right-0 p-8">
             <img
               src={close}
