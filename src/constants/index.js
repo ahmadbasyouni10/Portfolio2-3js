@@ -1,8 +1,6 @@
 import {
-  mobile,
-  backend,
+  nodejs,
   creator,
-  web,
   javascript,
   typescript,
   html,
@@ -10,7 +8,6 @@ import {
   reactjs,
   redux,
   tailwind,
-  nodejs,
   mongodb,
   git,
   figma,
@@ -19,11 +16,19 @@ import {
   starbucks,
   tesla,
   shopify,
-  carrent,
   jobit,
   tripguide,
   threejs,
 } from "../assets";
+
+import pytorch from './pytorch.png'
+import native from './1174949_js_react js_logo_react_react native_icon.png'
+import futhubb from './futhub1.PNG'
+import campuscal from './campuscal.PNG'
+import campuscal2 from './campuscal2.PNG'
+import campuscal4 from './campuscal4.PNG'
+import futhubb2 from './futhubb2.PNG'
+import aws from './aws.png'
 
 export const navLinks = [
   {
@@ -31,7 +36,7 @@ export const navLinks = [
     title: "About",
   },
   {
-    id: "work",
+    id: "projects",
     title: "Work",
   },
   {
@@ -42,20 +47,20 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
-    icon: web,
+    title: "Full Stack Web Developer",
+    icon: nodejs,
+  },
+  {
+    title: "Machine Learning/AI Engineer",
+    icon: pytorch,
   },
   {
     title: "React Native Developer",
-    icon: mobile,
+    icon: native,
   },
   {
-    title: "Backend Developer",
-    icon: backend,
-  },
-  {
-    title: "Content Creator",
-    icon: creator,
+    title: "Cloud Engineer",
+    icon: aws,
   },
 ];
 
@@ -116,150 +121,117 @@ const technologies = [
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Machine Learning/AI Researcher",
+    company_name: "NYU (New York University)",
+    icon: shopify,  // Add the appropriate icon for NYU
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "May 2024 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Researched GPT's (LLM) emotional intelligence capabilities, benchmarking against advanced PyTorch models (Torchmoji and BERT).",
+      "Applied vectorization methods for Natural Language Processing and utilized LSTM networks to improve DeepMoji’s model accuracy by 30%.",
+      "Trained and fine-tuned a Reinforcement Learning PyTorch model, optimizing for stressed and anxious emotions by 70%.",
+      "Engineered 10 new emojis into the emotion mapping of a Federated Learning-based BERT model and tracked backward loss, resulting in a 40% increase in prediction accuracy on a dataset of 300 sentences mapped with emojis.",
+      "Explored Deep Learning implementations and ML algorithms' trade-offs, focusing on theoretical foundations and ML project lifecycle.",
+      "Utilized Langchain to facilitate context grounding and prompt engineering by chunking queries and incorporating sequencing operations.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
+    title: "Software Engineering Intern",
+    company_name: "New EIC",
+    icon: tesla,  // Add the appropriate icon for New EIC
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "May 2024 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Led the Software Development Life Cycle for a school system web application, integrating data-based charts, analytics, and AI features using React, Node.js, OpenAI, and MongoDB, resulting in a platform now utilized by over 1000 students in China.",
+      "Launched 50+ Express routes to expand backend functionalities/API capabilities and implemented lazy loading for scalable performance.",
+      "Collaborated with a team of 15 engineers to produce detailed technical and product documentation, while conducting rigorous code reviews, resulting in a notable reduction in inquiries and enhanced software quality standards.",
+      "Implemented CI/CD pipelines, reducing deployment time by 30% for timely updates and enhancements to the school system platform, while also initiating the initial development stages of an iOS dashboard app using Swift and Xcode.",
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
+    title: "Software Engineering Intern",
+    company_name: "SEO Tech Developer - Goldman Sachs",
+    icon: meta,  // Add the appropriate icon for Goldman Sachs
     iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    date: "April 2024 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Completed 300+ hours of software engineering training led by Goldman Sachs engineers, focusing on full-stack development.",
+      "Gained proficiency in DevOps using Ansible/Terraform, preparing for cloud-based integration/systems testing.",
+      "Engaged in data engineering tasks, focused on data integrity and security principles within a Linux environment, utilizing version control and agile methodologies, including paired programming, scrum, and application resiliency.",
+      "Led development of Valorant Helper, an AI-powered web application that enhances player strategy with real-time game stats and answers.",
+      "Optimized data retrieval efficiency by 80% over the Valorant API by integrating Python with Flask and Next.js, utilizing SQLite3 for data management, and streamlining CI/CD workflows and testing processes.",
     ],
   },
   {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
+    title: "Front End Developer",
+    company_name: "Dyali Interiors",
+    icon: starbucks,  // Add the appropriate icon for Dyali Interiors
     iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    date: "May 2023 - September 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Built and maintained a web app using HTML, CSS, and Javascript (D3.js) to present interactive architectural visualizations for clients, resulting in a notable 20% increase in customer engagement.",
     ],
   },
 ];
 
-const testimonials = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
-];
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Fut Hub",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Web application that allows soccer/football fans and communities to interact and socialize by sharing videos, images, and posts, as well as editing profiles and adding friends.",
     tags: [
       {
-        name: "react",
+        name: "Next.js",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "React",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Supabase",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "Tailwind",
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    images: [futhubb, futhubb2],
+    website_link: "https://fut-hub.vercel.app/",
+    source_code_link: "https://github.com/ahmadbasyouni10/FutHub-CodepathWEB102-FinalProject",
   },
   {
-    name: "Job IT",
+    name: "CampusCal",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+    "Web application that allows soccer/football fans and communities to interact and socialize by sharing videos, images, and posts, as well as editing profiles and adding friends.",
     tags: [
       {
-        name: "react",
+        name: "React",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "Python",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "Flask",
         color: "pink-text-gradient",
       },
-    ],
-    image: jobit,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Trip Guide",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
       {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
+        name: "PyTorch",
         color: "pink-text-gradient",
       },
+      {
+        name: "SQLite3",
+        color: "pink-text-gradient",
+      }
     ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
+    images: [campuscal4, campuscal], 
+    source_code_link: "https://github.com/ahmadbasyouni10/CampusCal",
+    website_link: "https://campuscal-frontend.onrender.com/"
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, projects };
