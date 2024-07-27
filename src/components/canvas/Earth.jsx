@@ -1,10 +1,11 @@
-import React, { Suspense, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
-const Earth = () => {
-  const { scene, nodes, materials } = useGLTF("./planet/scene.gltf");
+const Earth = ({ scrollY }) => {
+  const earthRef = useRef();
+  const { scene } = useGLTF("./planet/scene.gltf");
 
   useEffect(() => {
     if (scene) {
@@ -18,12 +19,39 @@ const Earth = () => {
     }
   }, [scene]);
 
+  useFrame(() => {
+    if (earthRef.current) {
+      // Adjust this value to control the vertical rotation speed
+      const verticalRotation = scrollY * 0.002;
+      earthRef.current.rotation.x = verticalRotation;
+    }
+  });
+
   return (
-    <primitive object={scene} scale={1.7} position-y={-0.8} rotation-y={0} />
+    <primitive 
+      ref={earthRef}
+      object={scene} 
+      scale={1.7} 
+      position-y={-0.8} 
+    />
   );
 };
 
 const EarthCanvas = () => {
+  const [scrollY, setScrollY] = React.useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Canvas
       shadows
@@ -45,7 +73,7 @@ const EarthCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Earth />
+        <Earth scrollY={scrollY} />
         <Preload all />
       </Suspense>
     </Canvas>
