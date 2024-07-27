@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
+import { EarthCanvas } from "./canvas";
 
 const Hero = () => {
   return (
@@ -14,19 +15,18 @@ const Hero = () => {
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#5e6bff]'>Ahmad</span>
+          <h1 className={`${styles.heroHeadText} text-white`} style={{ fontSize: '2.5rem' }}>
+            Hi, I'm <span className='text-[#5e6bff]'>Ahmad Basyouni</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I am a Software & AI/ML Engineer majoring in<br className='sm:block hidden' />
-            Computer Engineering and Science at CUNY CSI,
-            aiming to create innovative solutions in the field of technology.
+          <p className={`${styles.heroSubText} mt-1 text-white-100`} style={{ fontSize: '1.5rem' }}>
+          <span className='text-[#5e6bff]'>Software & AI/ML Engineer</span> majoring in Computer Engineering and CS at City University of New York CSI, aiming to create innovative solutions in the 
+            field of AI.
             If you want to learn more, check out my resume, experience, and projects!
           </p>
         </div>
       </div>
 
-      <ComputersCanvas />
+      <EarthCanvas />
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
