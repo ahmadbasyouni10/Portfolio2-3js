@@ -205,7 +205,7 @@ const projects = [
   {
     name: "CampusCal",
     description:
-    "Web application that allows soccer/football fans and communities to interact and socialize by sharing videos, images, and posts, as well as editing profiles and adding friends.",
+    "Web application that helps students organize their time and track performance while preparing for coding assessments. It provides personalized study plans through a machine learning model that adapts over time.",
     tags: [
       {
         name: "React",
