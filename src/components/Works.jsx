@@ -53,7 +53,7 @@ const ProjectCard = ({
   return (
     <motion.div
       variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-      className="w-full lg:w-[90%] xl:w-[90%] mx-auto mb-20"
+      className="w-full lg:w-[60%] xl:w-[80%] mx-auto mb-20"
     >
       <Tilt
         options={{
@@ -63,10 +63,10 @@ const ProjectCard = ({
         }}
         className='bg-tertiary p-8 rounded-2xl w-full h-full flex flex-col shadow-xl'
       >
-        <div className='relative w-full h-[500px] mb-6'>
+        <div className='relative w-full h-[400px] mb-6'>
           <Slider {...settings}>
             {images.map((img, index) => (
-              <div key={index} className="w-full h-[500px]">
+              <div key={index} className="w-full h-[400px]">
                 <img
                   src={img}
                   alt={`project_image_${index}`}

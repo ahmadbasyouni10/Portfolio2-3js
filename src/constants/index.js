@@ -205,7 +205,7 @@ const projects = [
   {
     name: "CampusCal",
     description:
-    "Web application that helps students organize their time and track performance while preparing for coding assessments. It provides personalized study plans through a machine learning model that adapts over time.",
+    "Web application that helps students organize their time and track performance while preparing for coding assessments. Providing personalized study plans through a ML model.",
     tags: [
       {
         name: "React",
