@@ -52,19 +52,21 @@ const Navbar = () => {
   return (
     <header className={`${styles.paddingX} w-full fixed top-0 left-0 z-50 mt-4`}>
       <nav className={`container mx-auto flex justify-between py-5 items-center ${scrolled ? "backdrop-blur-md bg-[#1D2D49]/40" : "bg-transparent"} rounded-[3rem] px-8 mb-8 transition-all duration-200`}>
-        <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
-                active === nav.title ? "text-[#5e6bff]" : "text-white/80"
-              }`}
-              onClick={() => handleLinkClick(nav.id, nav.title)}
-            >
-              <a href={`#${nav.id}`}>{nav.title}</a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex-1 hidden sm:flex justify-start">
+          <ul className="list-none flex flex-row gap-10">
+            {navLinks.slice(0, Math.ceil(navLinks.length / 2)).map((nav) => (
+              <li
+                key={nav.id}
+                className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
+                  active === nav.title ? "text-[#5e6bff]" : "text-white/80"
+                }`}
+                onClick={() => handleLinkClick(nav.id, nav.title)}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <Link
           to="/"
@@ -77,13 +79,28 @@ const Navbar = () => {
           <FaCat className={`text-5xl transition-all ease-in-out duration-200 cursor-pointer ${active === "home" ? "text-[#5e6bff]" : "text-white"} hover:text-[#5e6bff]`} />
         </Link>
 
-        <div className="hidden sm:flex items-center gap-6">
-          <a href="https://github.com/ahmadbasyouni10" target="_blank" rel="noopener noreferrer">
-            <FaGithub className="text-3xl text-white/80 hover:text-[#5e6bff] transition-all duration-200" />
-          </a>
-          <a href="https://www.linkedin.com/in/ahmad-basyouni-b5a049236/" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin className="text-3xl text-white/80 hover:text-[#5e6bff] transition-all duration-200" />
-          </a>
+        <div className="flex-1 hidden sm:flex justify-end items-center">
+          <ul className="list-none flex flex-row gap-10">
+            {navLinks.slice(Math.ceil(navLinks.length / 2)).map((nav) => (
+              <li
+                key={nav.id}
+                className={`font-thickPoppins text-2xl hover:text-3xl transition-all ease-in-out duration-200 cursor-pointer ${
+                  active === nav.title ? "text-[#5e6bff]" : "text-white/80"
+                }`}
+                onClick={() => handleLinkClick(nav.id, nav.title)}
+              >
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              </li>
+            ))}
+          </ul>
+          <div className="flex items-center gap-6 ml-10">
+            <a href="https://github.com/ahmadbasyouni10" target="_blank" rel="noopener noreferrer">
+              <FaGithub className="text-3xl text-white/80 hover:text-[#5e6bff] transition-all duration-200" />
+            </a>
+            <a href="https://www.linkedin.com/in/ahmad-basyouni-b5a049236/" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin className="text-3xl text-white/80 hover:text-[#5e6bff] transition-all duration-200" />
+            </a>
+          </div>
         </div>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
