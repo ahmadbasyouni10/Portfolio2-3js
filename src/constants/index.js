@@ -29,6 +29,9 @@ import campuscal2 from './campuscal2.PNG'
 import campuscal4 from './campuscal4.PNG'
 import futhubb2 from './futhubb2.PNG'
 import aws from './aws.png'
+import ai_reccs from './ai_reccs.png'
+import video from './video.mov'
+import { color } from "framer-motion";
 
 export const navLinks = [
   {
@@ -176,6 +179,40 @@ const experiences = [
 
 
 const projects = [
+  {
+    name: "ProxiLink",
+    description: "AI-driven app that enhances social connections by offering personalized venue recommendations, smart itineraries, and seamless group planning features, enabling users to discover and enjoy optimal social experiences effortlessly.",
+    tags: [
+      {
+        name: "React Native",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Expo",
+        color: "green-text-gradient",
+      },
+      {
+        name: "FastAPI",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "PyTorch",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Appwrite",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Google Cloud",
+        color: "pink-text-gradient",
+      },
+    ],
+    images: [ai_reccs], // Your static image
+    video: video, // Your video file
+    website_link: "https://www.proxilink.info/",
+    source_code_link: "https://github.com/headStarter-Travel-app/travelAppUI",
+  },
   {
     name: "Fut Hub",
     description:
