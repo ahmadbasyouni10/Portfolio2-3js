@@ -1,9 +1,32 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
 import { EarthCanvas } from "./canvas";
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
+
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
+
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    // Remove the listener when the component is unmounted
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
+
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
@@ -16,17 +39,17 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`} style={{ fontSize: '2.5rem' }}>
-          <span className='text-[#5e6bff]'>Ahmad Basyouni</span>
+            <span className='text-[#5e6bff]'>Ahmad Basyouni</span>
           </h1>
           <p className={`${styles.heroSubText} mt-1 text-white-100`} style={{ fontSize: '1.5rem' }}>
-          <span className='text-[#5e6bff]'>Software & AI/ML Engineer</span> majoring in Computer Engineering and CS at City University of New York CSI, aiming to create innovative solutions in the 
+            <span className='text-[#5e6bff]'>Software & AI/ML Engineer</span> majoring in Computer Engineering and CS at City University of New York CSI, aiming to create innovative solutions in the 
             field of AI.
             If you want to learn more, check out my resume, experience, and projects!
           </p>
         </div>
       </div>
 
-      <EarthCanvas />
+      {!isMobile && <EarthCanvas />}
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
