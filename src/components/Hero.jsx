@@ -4,27 +4,18 @@ import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [showEarth, setShowEarth] = useState(true);
 
   useEffect(() => {
-    // Add a listener for changes to the screen size
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-    // Set the initial value of the `isMobile` state variable
-    setIsMobile(mediaQuery.matches);
-
-    // Define a callback function to handle changes to the media query
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
+    const handleResize = () => {
+      setShowEarth(window.innerWidth > window.screen.width / 2);
     };
 
-    // Add the callback function as a listener for changes to the media query
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    // Set initial state
+    handleResize();
 
-    // Remove the listener when the component is unmounted
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -43,13 +34,12 @@ const Hero = () => {
           </h1>
           <p className={`${styles.heroSubText} mt-1 text-white-100`} style={{ fontSize: '1.5rem' }}>
             <span className='text-[#5e6bff]'>Software & AI/ML Engineer</span> majoring in Computer Engineering and CS at City University of New York CSI, aiming to create innovative solutions in the 
-            field of AI.
-            If you want to learn more, check out my resume, experience, and projects!
+            field of AI. If you want to learn more, check out my resume, experience, and projects!
           </p>
         </div>
       </div>
 
-      {!isMobile && <EarthCanvas />}
+      {showEarth && <EarthCanvas />}
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
