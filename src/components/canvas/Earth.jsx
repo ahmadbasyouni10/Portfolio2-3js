@@ -1,9 +1,10 @@
 import React, { Suspense, useEffect, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import * as THREE from 'three';
 import CanvasLoader from "../Loader";
 
-const Earth = ({ scrollY }) => {
+const Earth = React.memo(() => {
   const earthRef = useRef();
   const { scene } = useGLTF("./planet/scene.gltf");
 
@@ -11,51 +12,34 @@ const Earth = ({ scrollY }) => {
     if (scene) {
       scene.traverse((child) => {
         if (child.isMesh) {
-          if (child.geometry.attributes.position.array.some(isNaN)) {
-            console.error("Model contains NaN values in position attribute");
-          }
+          child.material.side = THREE.DoubleSide;
+          child.material.needsUpdate = true;
         }
       });
     }
   }, [scene]);
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     if (earthRef.current) {
-      // Adjust this value to control the vertical rotation speed
-      const verticalRotation = scrollY * 0.002;
-      earthRef.current.rotation.x = verticalRotation;
+      earthRef.current.rotation.y += delta * 0.1; // Constant rotation
     }
   });
 
   return (
-    <primitive 
+    <primitive
       ref={earthRef}
-      object={scene} 
-      scale={1.7} 
-      position-y={-0.8} 
+      object={scene}
+      scale={1.5}
+      position-y={-0.8}
     />
   );
-};
+});
 
 const EarthCanvas = () => {
-  const [scrollY, setScrollY] = React.useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <Canvas
       shadows
-      frameloop='always'
+      frameloop='demand'
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
       camera={{
@@ -73,9 +57,9 @@ const EarthCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Earth scrollY={scrollY} />
-        <Preload all />
+        <Earth />
       </Suspense>
+      <Preload all />
     </Canvas>
   );
 };

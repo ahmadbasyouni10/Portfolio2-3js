@@ -1,17 +1,15 @@
-import { useState, useRef, Suspense } from "react";
+import React, { useState, useRef, Suspense, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
 
-const Stars = (props) => {
+const Stars = React.memo((props) => {
   const ref = useRef();
-  const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(2500), { radius: 1.2 })
-  );
+  const sphere = useMemo(() => random.inSphere(new Float32Array(1000), { radius: 1.2 }), []);
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 300;
-    ref.current.rotation.y -= delta / 290;
+    ref.current.rotation.x -= delta / 600;
+    ref.current.rotation.y -= delta / 580;
   });
 
   return (
@@ -20,14 +18,14 @@ const Stars = (props) => {
         <PointMaterial
           transparent
           color="#f272c8"
-          size={0.003} // Changed from 0.002 to 0.003
+          size={0.003}
           sizeAttenuation={true}
           depthWrite={false}
         />
       </Points>
     </group>
   );
-};
+});
 
 const StarsCanvas = () => {
   return (
@@ -36,7 +34,6 @@ const StarsCanvas = () => {
         <Suspense fallback={null}>
           <Stars />
         </Suspense>
-
         <Preload all />
       </Canvas>
     </div>
