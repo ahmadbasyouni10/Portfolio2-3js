@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
 
 const Hero = () => {
   const [showEarth, setShowEarth] = useState(true);
@@ -38,8 +37,6 @@ const Hero = () => {
           </p>
         </div>
       </div>
-
-      {showEarth && <EarthCanvas />}
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
