@@ -1,11 +1,9 @@
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
-import { slideIn } from "../utils/motion";
 
 const Contact = () => {
   const formRef = useRef();
@@ -66,10 +64,7 @@ const Contact = () => {
 
   return (
     <div className={`xl:mt-12 flex flex-col gap-10`}>
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className='w-full bg-black-100 p-8 rounded-2xl'
-      >
+      <div className='w-full bg-black-100 p-8 rounded-2xl'>
         <h3 className={styles.sectionHeadText}>Contact Me</h3>
 
         <form
@@ -118,14 +113,11 @@ const Contact = () => {
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
-      </motion.div>
+      </div>
 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className='w-full h-[350px] md:h-[100px]'
-      >
+      <div className='w-full h-[350px] md:h-[100px]'>
         {/* EarthCanvas component can be added here if needed */}
-      </motion.div>
+      </div>
     </div>
   );
 };

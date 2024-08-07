@@ -22,12 +22,6 @@ const Earth = React.memo(() => {
     }
   }, [scene]);
 
-  useFrame((state, delta) => {
-    if (earthRef.current) {
-      earthRef.current.rotation.y += delta * 0.05; // Slower rotation for better performance
-    }
-  });
-
   return (
     <primitive
       ref={earthRef}
@@ -41,20 +35,20 @@ const Earth = React.memo(() => {
 const EarthCanvas = () => {
   return (
     <Canvas
-      shadows
+      shadows={false} // Disable shadows for better performance
       frameloop='demand'
-      dpr={[1, 2]}
+      dpr={[1, 1.5]} // Lower DPR for better performance
       gl={{ preserveDrawingBuffer: true }}
       camera={{
         fov: 45,
         near: 0.1,
-        far: 200,
+        far: 800,
         position: [-4, 3, 6],
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          autoRotate
+          autoRotate={false} // Disable auto-rotation
           enableZoom={false}
           enablePan={false}
           maxPolarAngle={Math.PI / 2}

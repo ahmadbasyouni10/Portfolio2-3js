@@ -1,5 +1,4 @@
 import React from "react";
-import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -8,19 +7,13 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import resumeUrl from '../assets/Ahmad_Basyouni_Resume.pdf';
 
-const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
-    <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
+const ServiceCard = ({ title, icon }) => (
+  <div className='xs:w-[250px] w-full'>
+    <div 
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
     >
       <div
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
+        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col transition-all duration-300 ease-out hover:transform hover:scale-105 hover:rotate-[2deg]'
       >
         <img
           src={icon}
@@ -32,8 +25,8 @@ const ServiceCard = ({ index, title, icon }) => (
           {title}
         </h3>
       </div>
-    </motion.div>
-  </Tilt>
+    </div>
+  </div>
 );
 
 const About = () => {
@@ -71,11 +64,14 @@ const About = () => {
         </div>
       </div>
 
-      <div className='mt-20 flex flex-wrap gap-10'>
+      <motion.div 
+        variants={fadeIn("", "", 0.1, 1)}
+        className='mt-20 flex flex-wrap gap-10'
+      >
         {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
+          <ServiceCard key={service.title} {...service} />
         ))}
-      </div>
+      </motion.div>
     </>
   );
 };
