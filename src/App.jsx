@@ -9,8 +9,8 @@ const App = () => {
         <div className='relative z-10'>
           <Navbar />
           <Hero />
+          <Works />
           <About />
-          <Works /> 
           <Contact />
         </div>
       </div>

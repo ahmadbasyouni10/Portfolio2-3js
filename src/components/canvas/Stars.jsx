@@ -7,11 +7,6 @@ const Stars = React.memo((props) => {
   const ref = useRef();
   const sphere = useMemo(() => random.inSphere(new Float32Array(1000), { radius: 1.2 }), []);
 
-  useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 600;
-    ref.current.rotation.y -= delta / 580;
-  });
-
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>

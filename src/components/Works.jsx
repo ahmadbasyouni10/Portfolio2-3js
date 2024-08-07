@@ -68,7 +68,7 @@ const ProjectCard = ({
   return (
     <motion.div
       variants={fadeIn("up", "spring", index * 0.5, 0.75)}
-      className="w-full lg:w-[60%] xl:w-[80%] mx-auto mb-20"
+      className="w-full lg:w-[60%] xl:w-[80%] mx-auto mb-10"
     >
       <Tilt
         options={{
@@ -76,13 +76,13 @@ const ProjectCard = ({
           scale: 1,
           speed: 450,
         }}
-        className="bg-tertiary p-8 rounded-2xl w-full h-full flex flex-col shadow-xl"
+        className="bg-tertiary p-6 rounded-2xl w-full h-full flex flex-col shadow-xl" 
       >
-        <div className="relative w-full h-[400px] mb-6">
+        <div className="relative w-full h-[300px] mb-4"> 
           {isProxiLink ? (
             <div className="relative w-full h-full flex justify-center items-center">
               {/* First Phone (Image) */}
-              <div className="relative w-[220px] h-[440px] rounded-[2rem] bg-black p-2 shadow-xl transform -rotate-6 z-0">
+              <div className="relative w-[180px] h-[360px] rounded-[2rem] bg-black p-2 shadow-xl transform -rotate-6 z-0"> 
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-5 bg-black rounded-b-xl"></div>
                 <div className="w-full h-full rounded-[1.8rem] overflow-hidden">
                   <img
@@ -94,7 +94,7 @@ const ProjectCard = ({
               </div>
 
               {/* Second Phone with Video (now on top) */}
-              <div className="relative w-[220px] h-[440px] rounded-[2rem] bg-black p-2 shadow-xl transform rotate-6 -ml-16 z-10">
+              <div className="relative w-[180px] h-[360px] rounded-[2rem] bg-black p-2 shadow-xl transform rotate-6 -ml-16 z-10">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-5 bg-black rounded-b-xl"></div>
                 <div className="w-full h-full rounded-[1.8rem] overflow-hidden">
                   {video ? (
@@ -121,7 +121,7 @@ const ProjectCard = ({
           ) : (
             <Slider {...settings}>
               {images.map((img, index) => (
-                <div key={index} className="w-full h-[400px]">
+                <div key={index} className="w-full h-[300px]"> 
                   <img
                     src={img}
                     alt={`project_image_${index}`}
@@ -147,8 +147,8 @@ const ProjectCard = ({
         </div>
 
         <div className="flex-grow">
-          <h3 className="text-white font-bold text-[32px] mb-4">{name}</h3>
-          <p className="text-secondary text-[18px] leading-relaxed">
+          <h3 className="text-white font-bold text-[28px] mb-2">{name}</h3> 
+          <p className="text-secondary text-[16px] leading-relaxed"> 
             {description}
           </p>
         </div>
@@ -157,7 +157,7 @@ const ProjectCard = ({
           {tags.map((tag) => (
             <div
               key={tag.name}
-              className="rounded-lg overflow-hidden relative group w-[70px] h-[70px]"
+              className="rounded-lg overflow-hidden relative group w-[60px] h-[60px]" 
               style={{
                 background: "linear-gradient(180deg, #041433 0%, #010918 100%)",
                 transition: "transform 0.3s ease",
@@ -186,7 +186,7 @@ const ProjectCard = ({
         <div className="flex justify-center">
           <button
             onClick={() => window.open(website_link, "_blank")}
-            className="py-3 px-6 rounded-full bg-[#5e6bff] text-white font-bold text-lg hover:bg-[#4e5bff] transition-colors duration-300"
+            className="py-2 px-4 rounded-full bg-[#5e6bff] text-white font-bold text-md hover:bg-[#4e5bff] transition-colors duration-300"
           >
             Website
           </button>
@@ -203,7 +203,7 @@ const Works = () => {
         <h2 className={`${styles.sectionHeadText} mb-10`}>Projects</h2>
       </motion.div>
 
-      <div className="w-full flex mb-20">
+      <div className="w-full flex mb-10">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-3 text-secondary text-[20px] max-w-4xl leading-[30px] mx-auto text-center"
@@ -216,7 +216,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="flex flex-col items-center gap-y-20">
+      <div className="flex flex-col items-center gap-y-10"> 
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}

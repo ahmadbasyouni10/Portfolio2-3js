@@ -14,6 +14,9 @@ const Earth = React.memo(() => {
         if (child.isMesh) {
           child.material.side = THREE.DoubleSide;
           child.material.needsUpdate = true;
+          // Reduce material quality for better performance
+          child.material.roughness = 1;
+          child.material.metalness = 0;
         }
       });
     }
@@ -21,7 +24,7 @@ const Earth = React.memo(() => {
 
   useFrame((state, delta) => {
     if (earthRef.current) {
-      earthRef.current.rotation.y += delta * 0.1; // Constant rotation
+      earthRef.current.rotation.y += delta * 0.05; // Slower rotation for better performance
     }
   });
 
