@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import * as THREE from 'three';
 import CanvasLoader from "../Loader";
@@ -17,6 +17,8 @@ const Earth = React.memo(() => {
           // Reduce material quality for better performance
           child.material.roughness = 1;
           child.material.metalness = 0;
+          child.material.map.minFilter = THREE.LinearFilter; // Use linear filter for textures
+          child.material.map.generateMipmaps = false; // Disable mipmaps
         }
       });
     }
@@ -37,8 +39,8 @@ const EarthCanvas = () => {
     <Canvas
       shadows={false} // Disable shadows for better performance
       frameloop='demand'
-      dpr={[1, 1.5]} // Lower DPR for better performance
-      gl={{ preserveDrawingBuffer: true }}
+      dpr={[1, 1.2]} // Lower DPR for better performance
+      gl={{ antialias: false, preserveDrawingBuffer: true }} // Disable antialiasing
       camera={{
         fov: 45,
         near: 0.1,
