@@ -1,10 +1,9 @@
 import React, { Suspense, useEffect, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import * as THREE from 'three';
 import CanvasLoader from "../Loader";
 
-const Earth = React.memo(() => {
+const Earth = ({ scrollY }) => {
   const earthRef = useRef();
   const { scene } = useGLTF("./planet/scene.gltf");
 
@@ -12,53 +11,71 @@ const Earth = React.memo(() => {
     if (scene) {
       scene.traverse((child) => {
         if (child.isMesh) {
-          child.material.side = THREE.DoubleSide;
-          child.material.needsUpdate = true;
-          // Reduce material quality for better performance
-          child.material.roughness = 1;
-          child.material.metalness = 0;
-          child.material.map.minFilter = THREE.LinearFilter; // Use linear filter for textures
-          child.material.map.generateMipmaps = false; // Disable mipmaps
+          if (child.geometry.attributes.position.array.some(isNaN)) {
+            console.error("Model contains NaN values in position attribute");
+          }
         }
       });
     }
   }, [scene]);
 
+  useFrame(() => {
+    if (earthRef.current) {
+      // Adjust this value to control the vertical rotation speed
+      const verticalRotation = scrollY * 0.002;
+      earthRef.current.rotation.x = verticalRotation;
+    }
+  });
+
   return (
-    <primitive
+    <primitive 
       ref={earthRef}
-      object={scene}
-      scale={1.5}
-      position-y={-0.8}
+      object={scene} 
+      scale={1.7} 
+      position-y={-0.8} 
     />
   );
-});
+};
 
 const EarthCanvas = () => {
+  const [scrollY, setScrollY] = React.useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Canvas
-      shadows={false} // Disable shadows for better performance
-      frameloop='demand'
-      dpr={[1, 1.2]} // Lower DPR for better performance
-      gl={{ antialias: false, preserveDrawingBuffer: true }} // Disable antialiasing
+      shadows
+      frameloop='always'
+      dpr={[1, 2]}
+      gl={{ preserveDrawingBuffer: true }}
       camera={{
         fov: 45,
         near: 0.1,
-        far: 800,
+        far: 200,
         position: [-4, 3, 6],
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          autoRotate={false} // Disable auto-rotation
+          autoRotate
           enableZoom={false}
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
-        <Earth />
+        <Earth scrollY={scrollY} />
+        <Preload all />
       </Suspense>
-      <Preload all />
     </Canvas>
   );
 };
