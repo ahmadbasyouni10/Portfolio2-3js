@@ -14,11 +14,10 @@ const Earth = React.memo(() => {
         if (child.isMesh) {
           child.material.side = THREE.DoubleSide;
           child.material.needsUpdate = true;
-          // Reduce material quality for better performance
           child.material.roughness = 1;
           child.material.metalness = 0;
-          child.material.map.minFilter = THREE.LinearFilter; // Use linear filter for textures
-          child.material.map.generateMipmaps = false; // Disable mipmaps
+          child.material.map.minFilter = THREE.LinearFilter;
+          child.material.map.generateMipmaps = false;
         }
       });
     }
@@ -28,8 +27,8 @@ const Earth = React.memo(() => {
     <primitive
       ref={earthRef}
       object={scene}
-      scale={1.5}
-      position-y={-0.8}
+      scale={1.2} // Reduced from 1.5 to 1.0
+      position-y={-0.8} // Adjusted from -0.8 to 0
     />
   );
 });
@@ -37,20 +36,20 @@ const Earth = React.memo(() => {
 const EarthCanvas = () => {
   return (
     <Canvas
-      shadows={false} // Disable shadows for better performance
+      shadows={false}
       frameloop='demand'
-      dpr={[1, 1.2]} // Lower DPR for better performance
-      gl={{ antialias: false, preserveDrawingBuffer: true }} // Disable antialiasing
+      dpr={[1, 1.2]}
+      gl={{ antialias: false, preserveDrawingBuffer: true }}
       camera={{
         fov: 45,
         near: 0.1,
-        far: 800,
+        far: 200, // Reduced from 800 to 200
         position: [-4, 3, 6],
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          autoRotate={false} // Disable auto-rotation
+          autoRotate={false}
           enableZoom={false}
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
