@@ -27,8 +27,8 @@ const Earth = React.memo(() => {
     <primitive
       ref={earthRef}
       object={scene}
-      scale={1.2} // Reduced from 1.5 to 1.0
-      position-y={-0.8} // Adjusted from -0.8 to 0
+      scale={1.3} // Reduced from 1.5 to 1.0
+      position-y={-0.9} // Adjusted from -0.8 to 0
     />
   );
 });
