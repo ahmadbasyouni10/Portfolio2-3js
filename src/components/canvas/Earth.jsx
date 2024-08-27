@@ -14,10 +14,13 @@ const Earth = React.memo(() => {
         if (child.isMesh) {
           child.material.side = THREE.DoubleSide;
           child.material.needsUpdate = true;
-          child.material.roughness = 1;
-          child.material.metalness = 0;
-          child.material.map.minFilter = THREE.LinearFilter;
-          child.material.map.generateMipmaps = false;
+          // Restore better quality settings
+          child.material.roughness = 0.5;
+          child.material.metalness = 0.5;
+          child.material.map.minFilter = THREE.LinearMipmapLinearFilter;
+          child.material.map.magFilter = THREE.LinearFilter;
+          child.material.map.anisotropy = 16;
+          child.material.map.generateMipmaps = true;
         }
       });
     }
@@ -27,8 +30,8 @@ const Earth = React.memo(() => {
     <primitive
       ref={earthRef}
       object={scene}
-      scale={1.3} // Reduced from 1.5 to 1.0
-      position-y={-0.9} // Adjusted from -0.8 to 0
+      scale={1.3}
+      position-y={-0.9}
     />
   );
 });
@@ -36,25 +39,33 @@ const Earth = React.memo(() => {
 const EarthCanvas = () => {
   return (
     <Canvas
-      shadows={false}
+      shadows
       frameloop='demand'
-      dpr={[1, 1.2]}
-      gl={{ antialias: false, preserveDrawingBuffer: true }}
+      dpr={[1, 2]}
+      gl={{ 
+        antialias: true, 
+        preserveDrawingBuffer: true,
+        alpha: true,
+        powerPreference: "high-performance"
+      }}
       camera={{
         fov: 45,
         near: 0.1,
-        far: 200, // Reduced from 800 to 200
+        far: 200,
         position: [-4, 3, 6],
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
-          autoRotate={false}
+          autoRotate
+          autoRotateSpeed={0.5}
           enableZoom={false}
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
         <Earth />
       </Suspense>
       <Preload all />
